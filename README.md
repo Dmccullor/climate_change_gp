@@ -3,6 +3,9 @@
 ## Overview
 With this project we will use machine learning to predict when global ice levels will reach zero and what the resulting sea level will be. 
 
+## Communication
+We have set up a slack channel to facilitate sharing and communication across our team. We have clearly defined roles and goals for each member. All work is uploaded to github and requires approval from at least one other team member before it can be merged.
+
 ## Description
 We are taking two data sets and combining them to see the impact of the melting of polar ice caps on the rest of the world. We have one data set that measures average sea level and one that measures the amount of polar ice remaining. Using linear regression we will find when the the year in which polar ice will be completely melted and what the sea level will be that year. We will combine our data with images of projected flooding zones for various cities to show the impact of the rise in sea level.
 
