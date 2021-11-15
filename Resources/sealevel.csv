@@ -1,4 +1,4 @@
-Year,TotalWeightedObservations,GMSL_noGIA,StdDevGMSL_noGIA,SmoothedGSML_noGIA,GMSL_GIA,StdDevGMSL_GIA,SmoothedGSML_GIA,SmoothedGSML_GIA_sigremoved
+Year,TotalWeightedObservations,GMSL_noGIA,StdDevGMSL_noGIA,SmoothedGMSL_noGIA,GMSL_GIA,StdDevGMSL_GIA,SmoothedGMSL_GIA,SmoothedGMSL_GIA_sigremoved
 1993,327401.31,-38.59,89.86,-38.76,-38.59,89.86,-38.75,-38.57
 1993,324498.41,-41.97,90.86,-39.78,-41.97,90.86,-39.77,-39.11
 1993,333018.19,-41.93,87.27,-39.62,-41.91,87.27,-39.61,-38.58
