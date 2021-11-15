@@ -1,3 +1,6 @@
+#ignor heights array (way too large)
+heights_array.txt
+
 # Ignore config with API key
 config.py
 
