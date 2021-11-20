@@ -1,11 +1,12 @@
 #install.packages("tidyverse")
 #install.packages("jsonlite")
 #install.packages('RPostgreSQL')
+#install.packages('caTools')
 
 # Getting the needed libraries
 library(RPostgreSQL)
 library(ggplot2)
-
+library(caTools)
 
 ## Connecting to PostgreSQL database
 
@@ -27,10 +28,7 @@ summary(seadata)
 boxplot(seadata)$out
 
 # Assigning the outlier values into a vector
-#outliers <- boxplot(seadata$north_extent, plot=FALSE)$out
-
-# Checking the results
-print(outliers)
+outliers <- boxplot(seadata$north_extent, plot=FALSE)$out
 
 # Finding in which rows the outliers are
 seadata[which(seadata$north_extent %in% outliers),]
@@ -39,8 +37,8 @@ seadata[which(seadata$north_extent %in% outliers),]
 seadata <- seadata[-which(seadata$north_extent %in% outliers),]
 
 # Creating a simple scatterplot 
-ggplot(seadata) +
-  geom_point(aes(x = north_extent, y= gmsl_gia))
+ggplot(seadata, aes(x=north_extent, y=gmsl_gia)) + 
+  geom_point(shape=18, color="blue")
 
 # Calculating the correlation coefficient
 cor(seadata$north_extent,seadata$gmsl_gia)
@@ -48,8 +46,11 @@ cor(seadata$north_extent,seadata$gmsl_gia)
 #create linear model
 model <- lm(gmsl_gia ~ north_extent,seadata) 
 
-#summarizing the linear model
-summary(lm(gmsl_gia~north_extent,seadata))
+#summarizing the train model
+summary (model) 
 
 #plotting scatter and linear model
-plt + geom_point() + geom_line(aes(y=yvals), color = "red") 
+ggplot(seadata, aes(x=north_extent, y=gmsl_gia)) + 
+  geom_point(shape=18, color="blue")+
+  geom_smooth(method=lm, se=FALSE, linetype="dashed",
+              color="darkred")
