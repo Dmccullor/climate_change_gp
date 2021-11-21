@@ -2,15 +2,11 @@
 
 ## Project Overview
 
-In this project we attempt to understand the impact of sea ice extent over sea levels
-
-### Brief Background
-
-Global mean sea level has risen about 8–9 inches (21–24 centimeters) since 1880, with about a third of that coming in just the last two and a half decades. The rising water level is mostly due to a combination of melt water from glaciers and ice sheets and thermal expansion of seawater as it warms.
+In this project we attempt to understand the impact of sea ice extent over sea levels.
 
 ### Why Sea Levels Matter?
 
-In the United States, almost 40 percent of the population lives in relatively high population-density coastal areas, where sea level plays a role in flooding, shoreline erosion, and hazards from storms. Globally, 8 of the world’s 10 largest cities are near a coast, according to the U.N. Atlas of the Oceans.
+Global mean sea level has risen about 8–9 inches (21–24 centimeters) since 1880, with about a third of that coming in just the last two and a half decades. In the United States, almost 40 percent of the population lives in relatively high population-density coastal areas, where sea level plays a role in flooding, shoreline erosion, and hazards from storms. Globally, 8 of the world’s 10 largest cities are near a coast, according to the U.N. Atlas of the Oceans.
 Rising seas threaten infrastructure like roads, bridges, subways, water supplies, oil and gas wells, power plants, sewage treatment plants, landfills—the list is practically endless.
 
 Higher background water levels mean that deadly and destructive storm surges push farther inland than they once did. More frequent high-tide flooding, sometimes called “nuisance flooding” because it isn't generally deadly or dangerous, but it can be disruptive and expensive. Nuisance flooding is 300%-900% more frequent today than 50 years ago.
@@ -36,28 +32,28 @@ Sea level is measured by two main methods: tide gauges and satellite altimeters.
 
 ## Resources
 
-**Development Environments** 
+### Development Environments
 
 * Anaconda – versions 4.10.3
 * R Studio
 
-**Tools**
+### Tools
 
 * Amazon Web Services 
 * PostgreSQL and pgAdmin
 * R 
 * Python
 * Google Colab/Jupyter Notebooks
-* Tableau
+* Tableau 
 
-**Dependencies**
+### Dependencies
 
 * Pandas library
 * Numpy library
 * Matplotlib library
 * Sklearn library 
 
-**Datasets**
+### Datasets
 
 * https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021 
 * https://www.kaggle.com/nsidcorg/daily-sea-ice-extent-data
@@ -66,14 +62,14 @@ Sea level is measured by two main methods: tide gauges and satellite altimeters.
 
 Global warming and its effects are a wide topic with many aspects to it.  For the purpose of this project, we decided to look at two aspects and see how one impacts the other. We examined the extent of Sea ice and its impacts on Global Mean Sea Levels.  
 
-**Sea Ice Extent**
+### Sea Ice Extent
 
 * Primary Source: http://nsidc.org/data/nsidc-0051.html
 * Secondary Source: https://www.kaggle.com/nsidcorg/daily-sea-ice-extent-data
 
 The National Snow and Ice Data Center (NSIDC) supports research into our world’s frozen realms: the snow, ice, glaciers, frozen ground, and climate interactions that make up Earth’s cryosphere. NSIDC manages and distributes scientific data, creates tools for data access, supports data users, performs scientific research, and educates the public about the cryosphere.
 
-**Columns** 
+#### Columns
 
 The dataset provides the total extent for each day for the entire time period (1978-2019). There are 7 variables:
 
@@ -87,12 +83,12 @@ The dataset provides the total extent for each day for the entire time period (1
 
 For the purpose of our analysis, we have used the columns highlighted in bold
 
-**Sea Level**
+### Sea Level
 
 * Primary Data Source: https://climate.nasa.gov/ 
 * Secondary Data Source: https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021 
  
-**Columns**
+#### Columns
 
 The dataset provides the yearly changes in sea height in mm for the time period 1993-2021 
 
@@ -112,7 +108,7 @@ For the purpose of our analysis, we have used the columns highlighted in bold
 
 We used PostgerSQL to help clean and prepare our final data for analysis. The following steps were taken to cleanse the data to make it useable for our project
 
-**Preparing Sea Ice Data**
+### Preparing Sea Ice Data
 
 * Remove source_data column as it is not relevant to our analysis 
 * Select only columns year, extent, hemisphere that are needed for our analysis into a new table called seaicedata 
@@ -120,7 +116,7 @@ We used PostgerSQL to help clean and prepare our final data for analysis. The fo
 * Remove south hemisphere data as North hemisphere is most impacted by melting sea ice 
 * Change column name for column avg to north_extent
 
-**Preparing Sea Level Data**
+### Preparing Sea Level Data
 
 * Select only columns year and gmsl_gia that are needed for our analysis into a new table called Sealeveldata 
 * Creating Seadata 
@@ -180,7 +176,7 @@ Just to be double sure of our results we also used R to run our model. Here we p
 
 ## Results of our Model
 
-Results of Linear Regression **Model in Python** indicate a strong negative correlation between sealevel rises (gmsl_gia) and seaice extent (north_extent) 
+### Results of Linear Regression **Model in Python** indicate a strong negative correlation between sealevel rises (gmsl_gia) and seaice extent (north_extent) 
 
 <img width="545" alt="Python_Model_Scatter_Plot" src="https://user-images.githubusercontent.com/85518330/142768507-4cbec690-139b-4b9f-ad72-0cd64b454243.png">
 
@@ -191,12 +187,20 @@ Results of Linear Regression **Model in Python** indicate a strong negative corr
 <img width="725" alt="Pearsons Correlation Coefficient" src="https://user-images.githubusercontent.com/85518330/142768639-8d4b1e2e-89af-4847-a32c-1fae7297867f.png">
 
 
-Results of Linear Regression **Model in R** also indicate a strong negative correlation between sealevel rises (gmsl_gia) and seaice extent (north_extent) 
+### Results of Linear Regression **Model in R** also indicate a strong negative correlation between sealevel rises (gmsl_gia) and seaice extent (north_extent) 
 
 ![Rplot](https://user-images.githubusercontent.com/85518330/142768795-5841733a-599c-4074-a892-d0254700f64d.png)
 
 <img width="521" alt="R_Model_results" src="https://user-images.githubusercontent.com/85518330/142768810-411a85c4-30dd-4f6f-a50d-12182ef4b289.png">
 
 
+## Tableau Visualizations
 
+Tableau - https://public.tableau.com/app/profile/uma.sivakumar2291/viz/Climate_Change_Group_Project/RisingSealevels?publish=yes
 
+## Map Generation
+The maps were generated by requesting tiles from the Mapbox RGB terrain data and recompiling using the Pillow image library. The RGB encoded tile set was used in order to get as much detail as possible, as it is recorded in 0.1 meter height increments. The code to accomplish this was heavily borrowed from Douwe Osinga's <a href="https://douwe.com/projects/sealevel">sea level rise</a> project. The data was decoded from RGB encoded values into a numpy array containing height data. This array was then recoded into RGB values representing the projected sea level and flood risk areas.
+
+In order to determine the new global sea level, the y-intercept was taken from our machine learning model and the 2020 sea level average was subtracted from that, which resulted in a change of ~0.4 meters. The mean higher high water datum for each region was determined from the National Oceanic and Atmospheric Administration's <a href="https://vdatum.noaa.gov/docs/services.html">Vdatum</a> API. This level was added to the projected sea level in order to determine flood risk areas. The image below features a map of New Orleans, LA with the projected sea level mapped in red and flood risk areas mapped in orange.
+<br>
+<img src="/Map/new_orleans_sm.jpg">
