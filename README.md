@@ -1,4 +1,18 @@
-# Rising Sea Levels and Their Impact
+# Rising Sea Levels and its Impact
+
+## Team Composition and Roles 
+
+We were **Team D (4)** which included 
+* Kashyap Bagare - **Circle** - Database  
+* Dylan McCullor - **X** - Technologies used 
+* Uma Sivakumar - **Triangle** - Machine learning model
+* Richard Ybarra - **Square** - GitHub
+* Team Collective - **Team** - Readme, Google Slides Presentation
+
+These were the broad self-assigned roles but most of us did a little of everything. 
+
+**Communication protocols** Richard created the group GitHub early in the project and also a team slack group called **teamd**. Most of our team interactions during the five weeks of the project happened on slack. We worked closely with each other, met up during class hours and a few extra times on zoom to bounce our ideas, work, get team inputs and arrive at consensus on key matters during the project.
+
 
 ## Project Overview
 
@@ -45,11 +59,12 @@ Sea level is measured by two main methods: tide gauges and satellite altimeters.
 * Python
 * Google Colab/Jupyter Notebooks
 * Tableau 
+* Google Slides
 
 ### Dependencies
 
 * Pandas library
-* Numpy library
+* NumPy library
 * Matplotlib library
 * Sklearn library 
 
@@ -106,11 +121,11 @@ For the purpose of our analysis, we have used the columns highlighted in bold
 
 ## Data Preparation
 
-We used PostgerSQL to help clean and prepare our final data for analysis. The following steps were taken to cleanse the data to make it useable for our project
+We used PostgreSQL to help clean and prepare our final data for analysis. The following steps were taken to cleanse the data to make it useable for our project
 
 ### Preparing Sea Ice Data
 
-* Remove source_data column as it is not relevant to our analysis 
+* Remove source data column as it is not relevant to our analysis 
 * Select only columns year, extent, hemisphere that are needed for our analysis into a new table called seaicedata 
 * Group data by year and hemisphere and order by year 
 * Remove south hemisphere data as North hemisphere is most impacted by melting sea ice 
@@ -126,7 +141,7 @@ We used PostgerSQL to help clean and prepare our final data for analysis. The fo
 
 **PostgreSQL – AWS S3 Bucket – Jupyter Notebook** 
 
-To demonstrate our understanding of using Amazon Web Services as well as PostgreSQL we performed all our data cleansing using PostgreSQL then pulled data from PostGreSQL into our S3 bucket created for the purpose of this project and from Amazon Web Services.  We then pulled the data into Jupyter Notebook to run the machine learning model 
+To demonstrate our understanding of using Amazon Web Services as well as PostgreSQL we performed all our data cleansing using PostgreSQL then pulled data from PostgreSQL into our S3 bucket created for the purpose of this project and from Amazon Web Services.  We then pulled the data into Jupyter Notebook to run the machine learning model 
 
 **PostgreSQL – R Studio** 
 
@@ -138,7 +153,7 @@ Just to be double sure of our results we also used R to run our model. Here we p
 * Connecting to PostgreSQL database
 * Listing all the tables available in the PostgreSQL Database 
 * Reading the table of interest seadata
-* summary(seadata)
+* Summary(seadata)
 * A look at the data shows us that 2019 values are quite large and may not be within the range so we need to check for outliers
 * Creating a boxplot to check for outliers
 * Assigning the outlier values into a vector 
@@ -153,7 +168,7 @@ Just to be double sure of our results we also used R to run our model. Here we p
 
 ## Machine Learning Model – Analysis using Python
 
-* Import relevant libraries – Pandas, Numpy, Matplotlib, Skylearn
+* Import relevant libraries – Pandas, NumPy, Matplotlib, Skylearn
 * Connect to PostgreSQL and to read the SQL tables
 * Get table names of the SQL tables in PostgreSQL
 * Read the relevant table (seadata) as a dataframe
@@ -163,7 +178,7 @@ Just to be double sure of our results we also used R to run our model. Here we p
 *	Hence the model of choice will be a Simple Linear Regression
 *	The plot indicates that there one data point that looks like an outlier. We need to identify and remove it before running our Linear Regression Model. 
 *	Defining the quantile cap & removing all values that are not in the defined range
-*	The north_extent for 2019 was an oulier and hence we remove the data for the year 2019
+*	The north_extent for 2019 was an outlier and hence we remove the data for the year 2019
 *	Redefining X and y variables with the cleaned dataset after removing the outlier
 *	Replotting the data to check the datapoints
 *	Splitting the dataset into train and test using the sklearn train and test library 
@@ -194,13 +209,32 @@ Just to be double sure of our results we also used R to run our model. Here we p
 <img width="521" alt="R_Model_results" src="https://user-images.githubusercontent.com/85518330/142768810-411a85c4-30dd-4f6f-a50d-12182ef4b289.png">
 
 
+## Map Generation
+
+The maps were generated by requesting tiles from the Mapbox RGB terrain data and recompiling using the Pillow image library. The RGB encoded tile set was used in order to get as much detail as possible, as it is recorded in 0.1 meter height increments. The code to accomplish this was heavily borrowed from Douwe Osinga's <a href="https://douwe.com/projects/sealevel">sea level rise</a> project. The data was decoded from RGB encoded values into a numpy array containing height data. This array was then recoded into RGB values representing the projected sea level and flood risk areas.
+
+In order to determine the new global sea level, the y-intercept was taken from our machine learning model and the 2020 sea level average was subtracted from that, which resulted in a change of ~0.4 meters. The mean higher high-water datum for each region was determined from the National Oceanic and Atmospheric Administration's <a href="https://vdatum.noaa.gov/docs/services.html">Vdatum</a> API. This level was added to the projected sea level in order to determine flood risk areas. The image below features a map of New Orleans, LA with the projected sea level mapped in red and flood risk areas mapped in orange.
+<br>
+<img src="/Map/new_orleans_sm.jpg">
+
+
 ## Tableau Visualizations
 
 Tableau - https://public.tableau.com/app/profile/uma.sivakumar2291/viz/Climate_Change_Group_Project/RisingSealevels?publish=yes
 
-## Map Generation
-The maps were generated by requesting tiles from the Mapbox RGB terrain data and recompiling using the Pillow image library. The RGB encoded tile set was used in order to get as much detail as possible, as it is recorded in 0.1 meter height increments. The code to accomplish this was heavily borrowed from Douwe Osinga's <a href="https://douwe.com/projects/sealevel">sea level rise</a> project. The data was decoded from RGB encoded values into a numpy array containing height data. This array was then recoded into RGB values representing the projected sea level and flood risk areas.
+## Google Slides Presentation Link
 
-In order to determine the new global sea level, the y-intercept was taken from our machine learning model and the 2020 sea level average was subtracted from that, which resulted in a change of ~0.4 meters. The mean higher high water datum for each region was determined from the National Oceanic and Atmospheric Administration's <a href="https://vdatum.noaa.gov/docs/services.html">Vdatum</a> API. This level was added to the projected sea level in order to determine flood risk areas. The image below features a map of New Orleans, LA with the projected sea level mapped in red and flood risk areas mapped in orange.
-<br>
-<img src="/Map/new_orleans_sm.jpg">
+https://docs.google.com/presentation/d/1g9qqXP4a41h-r0_NjUngBITO3VMvTrsCdHgCnUQCarw/edit#slide=id.p
+
+
+## Recommendations for Future Analysis
+
+The scope of this project was limited to studying the impact of only seaice extent on sealevel rises. We used yearly averages of both seaice extent and sealevel changes as the sealevel data we used was available as an aggregate for the year only. Our study was limited to the northern hemisphere because we felt it was most impacted by rising sealevels being most populated. However, with more time and resources at hand it may be useful to study the following in future.  
+
+- Study the impact of seaice extent on sea levels in both hemispheres to understand how the Artic and Antarctica respond differently
+- Seasonal impacts of seaice on sealevels in the two hemispheres
+- Expand the scope of study to include other factors that are causing thermal expansions of the oceans 
+
+## Anything Team Would Have Done Differently 
+
+This project was designed and executed with the aim to demonstrate our team’s capability in putting to use the skills we learnt in the data visualization bootcamp. Hence the project was designed to best demonstrate that. Should the scope of this project be expanded with more time and resources, we may choose to analysis all factors that impact sealevel rises and dive deep into each factor to present a more nuanced perspective
