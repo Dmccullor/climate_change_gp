@@ -237,4 +237,4 @@ The scope of this project was limited to studying the impact of only seaice exte
 
 ## Anything Team Would Have Done Differently 
 
-This project was designed and executed with the aim to demonstrate our team’s capability in putting to use the skills we learnt in the data visualization bootcamp. Hence the project was designed to best demonstrate that. Should the scope of this project be expanded with more time and resources, we may choose to analysis all factors that impact sealevel rises and dive deep into each factor to present a more nuanced perspective
+This project was designed and executed with the aim to demonstrate our team’s capability in putting to use the skills we learnt in the data visualization bootcamp. Hence the project was designed to best demonstrate that. Should the scope of this project be expanded with more time and resources, we may choose to analyze all factors that impact sealevel rises and dive deep into each factor to present a more nuanced perspective
