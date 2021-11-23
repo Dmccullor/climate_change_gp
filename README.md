@@ -11,8 +11,6 @@ We were **Team D (4)** which included
 
 These were the broad self-assigned roles but most of us did a little of everything. 
 
-**Communication protocols** Richard created the group GitHub early in the project and also a team slack group called **teamd**. Most of our team interactions during the five weeks of the project happened on slack. We worked closely with each other, met up during class hours and a few extra times on zoom to bounce our ideas, work, get team inputs and arrive at consensus on key matters during the project.
-
 
 ## Project Overview
 
@@ -66,7 +64,9 @@ Sea level is measured by two main methods: tide gauges and satellite altimeters.
 * Pandas library
 * NumPy library
 * Matplotlib library
-* Sklearn library 
+* Sklearn library
+* Pillow Image library
+* Requests library
 
 ### Datasets
 
